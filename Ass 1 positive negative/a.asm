@@ -1,4 +1,5 @@
-; ALP to find no. of positive / negative elements from 32-bit array
+
+
 section    .data
 nline        db    10,10
 nline_len:    equ    $-nline
