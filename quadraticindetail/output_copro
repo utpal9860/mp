@@ -1,0 +1,94 @@
+
+
+[swati@localhost quadratic]$ sudo yum install glibc.i686
+Redirecting to '/usr/bin/dnf install glibc.i686' (see 'man yum2dnf')
+
+Last metadata expiration check: 3:12:05 ago on Wed Mar  1 11:45:24 2017.
+Package glibc-2.24-4.fc25.i686 is already installed, skipping.
+Dependencies resolved.
+Nothing to do.
+Complete!
+
+
+[swati@localhost quadratic]$ sudo yum install zlib.i686 libstdc++.i686 ncurses-libs.i686 libgcc.i686
+Redirecting to '/usr/bin/dnf install zlib.i686 libstdc++.i686 ncurses-libs.i686 libgcc.i686' (see 'man yum2dnf')
+
+Last metadata expiration check: 3:12:23 ago on Wed Mar  1 11:45:24 2017.
+Package libgcc-6.3.1-1.fc25.i686 is already installed, skipping.
+Dependencies resolved.
+===============================================================================
+ Package            Arch       Version                     Repository     Size
+===============================================================================
+Installing:
+ libstdc++          i686       6.3.1-1.fc25                updates       485 k
+ ncurses-libs       i686       6.0-6.20160709.fc25         fedora        306 k
+ zlib               i686       1.2.8-10.fc24               fedora         98 k
+
+Transaction Summary
+===============================================================================
+Install  3 Packages
+
+Total download size: 889 k
+Installed size: 2.8 M
+Is this ok [y/N]: y
+Downloading Packages:
+(1/3): zlib-1.2.8-10.fc24.i686.rpm             9.9 kB/s |  98 kB     00:09    
+(2/3): libstdc++-6.3.1-1.fc25.i686.rpm          31 kB/s | 485 kB     00:15    
+(3/3): ncurses-libs-6.0-6.20160709.fc25.i686.r  19 kB/s | 306 kB     00:15    
+-------------------------------------------------------------------------------
+Total                                           39 kB/s | 889 kB     00:22     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Installing  : libstdc++-6.3.1-1.fc25.i686                                1/3 
+  Installing  : ncurses-libs-6.0-6.20160709.fc25.i686                      2/3 
+  Installing  : zlib-1.2.8-10.fc24.i686                                    3/3 
+  Verifying   : zlib-1.2.8-10.fc24.i686                                    1/3 
+  Verifying   : ncurses-libs-6.0-6.20160709.fc25.i686                      2/3 
+  Verifying   : libstdc++-6.3.1-1.fc25.i686                                3/3 
+
+Installed:
+  libstdc++.i686 6.3.1-1.fc25       ncurses-libs.i686 6.0-6.20160709.fc25      
+  zlib.i686 1.2.8-10.fc24          
+
+Complete!
+[swati@localhost quadratic]$ gcc -c rootsc.c
+[swati@localhost quadratic]$ nasm -f elf -g -F stabs -o roots.o roots.asm
+[swati@localhost quadratic]$ gcc -c -m32 rootsc.o roots.o -o roots
+gcc: warning: rootsc.o: linker input file unused because linking not done
+gcc: warning: roots.o: linker input file unused because linking not done
+[swati@localhost quadratic]$ gcc -m32 rootsc.o roots.o -o roots
+/usr/bin/ld: i386:x86-64 architecture of input file `rootsc.o' is incompatible with i386 output
+/usr/bin/ld: rootsc.o: file class ELFCLASS64 incompatible with ELFCLASS32
+/usr/bin/ld: final link failed: File in wrong format
+collect2: error: ld returned 1 exit status
+[swati@localhost quadratic]$ gcc -c -m32 rootsc.c
+[swati@localhost quadratic]$ nasm -f elf32 -g -F stabs -o roots.o roots.asm
+[swati@localhost quadratic]$ gcc -m32 rootsc.o roots.o -o roots
+[swati@localhost quadratic]$ ./a.out
+bash: ./a.out: No such file or directory
+[swati@localhost quadratic]$ ./roots
+Enter coefficients: 1 2 3
+Root1 = 0.414214i and root2 = -2.414214i
+[swati@localhost quadratic]$ nasm -f elf32 qua.asm
+[swati@localhost quadratic]$ gcc -m32 qua.o
+[swati@localhost quadratic]$ ./a.out
+INPUT THE CO-EFFICIENT a ( a(x^2) + bx + c ) 
+1 2 3
+INPUT THE CO-EFFICIENT b ( a(x^2) + bx + c ) 
+INPUT THE CO-EFFICIENT c ( a(x^2) + bx + c ) 
+DISCRIMINANT  =  -8.000000 
+Root 1 = 0.414214i   &   Root 2 = -2.414214i 
+[swati@localhost quadratic]$ nasm -f elf32 nice1.asm
+nice1.asm:62: warning: label alone on a line without a colon might be in error
+[swati@localhost quadratic]$ nasm -f elf32 nice1.asm
+[swati@localhost quadratic]$ gcc -m32 nice1.o
+[swati@localhost quadratic]$ ./a.out
+Enter three numbers: 1 2 3
+Equation 1.000x^2 +2.000x  +3.000 = 0 
+The roots are: -0.285 and -0.049
+[swati@localhost quadratic]$ 
+[swati@localhost quadratic]$ 
+
