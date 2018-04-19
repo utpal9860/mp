@@ -1,4 +1,5 @@
-;---------------------------------------------------------------------
+
+
 section .data
 	nline		db	10,10
 	nline_len:	equ	$-nline
@@ -12,7 +13,7 @@ section .data
 	cmsg		db	10,"No. of character occurances are	: "
 	cmsg_len:	equ	$-cmsg
 
-;---------------------------------------------------------------------
+
 section .bss
 
 	scount	resq	1
@@ -21,13 +22,13 @@ section .bss
 
 	char_ans	resb	16
 
-;---------------------------------------------------------------------
+
 global	far_proc		
 
 extern	filehandle, char, buf, abuf_len
 
 %include	"macro.asm"
-;---------------------------------------------------------------------
+
 section .text
 	global	_main
 _main:
@@ -78,19 +79,17 @@ next:		inc	rsi
 	fclose	[filehandle]
 	ret
 
-;------------------------------------------------------------------
+
+
 display:
 	mov 	rsi,char_ans+3	; load last byte address of char_ans in rsi
 	mov 	rcx,4			; number of digits 
 
-cnt:	mov 	rdx,0			; make rdx=0 (as in div instruction rdx:rax/rbx)
-	mov 	rbx,10		; divisor=10 for decimal and 16 for hex
+cnt:	mov 	rdx,0			
+	mov 	rbx,10		
 	div 	rbx
-;	cmp 	dl, 09h		; check for remainder in RDX
-;	jbe  	add30
-;	add  	dl, 07h 
-;add30:
-	add 	dl,30h		; calculate ASCII code
+	add 	dl,30h		; calculate ASCII value
+
 	mov 	[rsi],dl		; store it in buffer
 	dec 	rsi			; point to one byte back
 
@@ -99,5 +98,6 @@ cnt:	mov 	rdx,0			; make rdx=0 (as in div instruction rdx:rax/rbx)
 	
 	print char_ans,4		; display result on screen
 ret
-;----------------------------------------------------------------
+
+
 
