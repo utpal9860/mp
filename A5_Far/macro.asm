@@ -1,21 +1,4 @@
-;macro.asm
-;macros as per 64 bit conventions
 
-%macro read 2
-	mov	rax,0		;read
-	mov	rdi,0		;stdin/keyboard
-	mov	rsi,%1	;buf
-	mov	rdx,%2	;buf_len
-	syscall
-%endmacro
-
-%macro print 2
-	mov	rax,1		;print
-	mov	rdi,1		;stdout/screen
-	mov	rsi,%1	;msg
-	mov	rdx,%2	;msg_len
-	syscall
-%endmacro
 
 %macro fopen 1
 	mov	rax,2		;open
@@ -47,9 +30,4 @@
 	syscall
 %endmacro
 
-%macro exit 0
-	print	nline,nline_len
-	mov	rax,60	;exit
-	mov	rdi,0
-	syscall
-%endmacro
+
