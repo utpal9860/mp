@@ -1,6 +1,6 @@
 
-extern	far_proc		; [ FAR PROCRDURE 
-					;   USING EXTERN DIRECTIVE ]
+extern	far_proc		;  FAR PROCRDURE 
+					;   USING EXTERN DIRECTIVE 
 
 global	filehandle, char, buf, abuf_len
 
