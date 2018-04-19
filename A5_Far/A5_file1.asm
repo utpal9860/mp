@@ -81,7 +81,7 @@ Exit:		print	exitmsg,exitmsg_len
 ;-------------------------------------------------------------------------------- 
 
 ;-----------------------------OUTPUT--------------------------------------------
-;guest-tiydlt@student-HCL-Desktop:~$ nasm -felf64 A5_file1.asm
+;guest-tiydlt@student-HCL-Desktop:~$ nasm -f elf64 A5_file1.asm
 ;guest-tiydlt@student-HCL-Desktop:~$ ld -o a A5_file1.o A5_file2.o
 ;guest-tiydlt@student-HCL-Desktop:~$ ./a
 
