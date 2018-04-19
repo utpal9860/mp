@@ -38,7 +38,7 @@ section .text
 	global _start
 		
 _start:
-		print	ano,ano_len				;assignment no. 
+		
 
 		print	filemsg,filemsg_len		
 		read 	filename,50
