@@ -1,12 +1,3 @@
-;Assignment no. :5
-;Assignment Name :X86/64 Assembly language program (ALP) to find
-;	a) Number of Blank spaces
-;	b) Number of lines
-;	c) Occurrence of a particular character. 
-;Accept the data from the text file. The text file has to be accessed during Program_1 execution.
-;Write FAR PROCEDURES in Program_2 for the rest of the processing.
-;Use of PUBLIC/GLOBAL and EXTERN directives is mandatory.
-;------------------------------------------------------------------------
 
 extern	far_proc		; [ FAR PROCRDURE 
 					;   USING EXTERN DIRECTIVE ]
@@ -79,26 +70,4 @@ Exit:		print	exitmsg,exitmsg_len
 		exit
 ;-------------------------------------------------------------------------------- 
 ;-------------------------------------------------------------------------------- 
-
-;-----------------------------OUTPUT--------------------------------------------
-;guest-tiydlt@student-HCL-Desktop:~$ nasm -f elf64 A5_file1.asm
-;guest-tiydlt@student-HCL-Desktop:~$ ld -o a A5_file1.o A5_file2.o
-;guest-tiydlt@student-HCL-Desktop:~$ ./a
-
-
-
-
-;ML assignment 05 :- String Operation using Far Procedure
-;---------------------------------------------------
-
-;Enter filename for string operation	: data.txt
-
-;Enter character to search	: pagal
-
-;No. of spaces are	: 0006
-;No. of lines are	: 0003
-;No. of character occurances are	: 0002
-
-;Exit from program...
-
 
