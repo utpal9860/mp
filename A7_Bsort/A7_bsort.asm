@@ -1,20 +1,13 @@
-;Assignment no. :7
-;Assignment Name :X86/64 Assembly language program (ALP) 
-;To sort the list of integers in ascending/descending order using bubble sort. 
-;Read the input from the text file and write the sorted data back to the same text file.
-;------------------------------------------------------------------------
 
 %include	"macro.asm"
-;------------------------------------------------------------------------
+
 section .data
 	nline		db	10
 	nline_len	equ	$-nline
 
-	ano		db 	10,10,10,10,"ML assignment 07 :- Bubble sort using file operations"
-			db		   10,"---------------------------------------------------",10
-	ano_len	equ	$-ano
+	
 
-	filemsg	db	10,"Enter filename of input data	: "
+	filemsg	db	10,"Enter filename of input data: "
 	filemsg_len	equ	$-filemsg	
 
 	omsg		db	10,"Sorting using bubble sort Operation successful."
@@ -30,7 +23,6 @@ section .data
 	exitmsg	db	10,10,"Exit from program...",10,10
 	exitmsg_len	equ	$-exitmsg
 
-;---------------------------------------------------------------------------
 section .bss
 	buf			resb	1024
 	buf_len		equ	$-buf		; buffer length
@@ -42,7 +34,6 @@ section .bss
 
 	array			resb	10
 	n			resq	1
-;--------------------------------------------------------------------------
 section .text
 	global _start
 		
@@ -70,7 +61,6 @@ Error:	print	errmsg, errmsg_len
 
 Exit:		print	exitmsg,exitmsg_len
 		exit
-;-------------------------------------------------------------------------------- 
 bsort:							; Bubble sort procedure
 		call	buf_array
 
@@ -123,7 +113,6 @@ next:		inc	rsi
 Error1:
 	print	ermsg, ermsg_len
 	RET
-;------------------------------------------------------------------
 buf_array:
 	xor	rcx,rcx
 	xor	rsi,rsi
@@ -147,4 +136,4 @@ next_num:
 	dec	rcx		; newline
 	jnz	next_num
 ret
-;------------------------------------------------------------------
+
