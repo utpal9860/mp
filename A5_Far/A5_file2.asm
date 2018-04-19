@@ -4,13 +4,13 @@ section .data
 	nline		db	10,10
 	nline_len:	equ	$-nline
 
-	smsg		db	10,"No. of spaces are	: "
+	smsg		db	10,"No. of spaces are : "
 	smsg_len:	equ	$-smsg
 	
-	nmsg		db	10,"No. of lines are	: "
+	nmsg		db	10,"No. of lines are : "
 	nmsg_len:	equ	$-nmsg
 
-	cmsg		db	10,"No. of character occurances are	: "
+	cmsg		db	10,"No. of character occurances are : "
 	cmsg_len:	equ	$-cmsg
 
 
@@ -46,23 +46,23 @@ far_proc:          		;FAR Procedure
 
 again:	mov	al,[rsi]
 
-case_s:	cmp	al,20h		;space : 32 (20H)
+case_s:	cmp	al,20h		;space  32 = 20H
 		jne	case_n
 		inc	qword[scount]
 		jmp	next
 
-case_n:	cmp	al,0Ah		;newline : 10(0AH)
+case_n:	cmp	al,0Ah		;new line 10=0AH
 		jne	case_c
 		inc	qword[ncount]
 		jmp	next
 
-case_c:	cmp	al,bl			;character
+case_c:	cmp	al,bl			;camparing with character 
 		jne	next
 		inc	qword[ccount]
 
 next:		inc	rsi
-		dec	rcx			;
-		jnz	again			;loop again
+		dec	rcx			
+		jnz	again			
 
 		print smsg,smsg_len
 		mov	rax,[scount]
@@ -82,21 +82,21 @@ next:		inc	rsi
 
 
 display:
-	mov 	rsi,char_ans+3	; load last byte address of char_ans in rsi
-	mov 	rcx,4			; number of digits 
+	mov 	rsi,char_ans+3	
+	mov 	rcx,4			
 
 cnt:	mov 	rdx,0			
 	mov 	rbx,10		
 	div 	rbx
-	add 	dl,30h		; calculate ASCII value
+	add 	dl,30h		
 
-	mov 	[rsi],dl		; store it in buffer
-	dec 	rsi			; point to one byte back
+	mov 	[rsi],dl		
+	dec 	rsi			
 
-	dec 	rcx			; decrement count
-	jnz 	cnt			; if not zero repeat
+	dec 	rcx			
+	jnz 	cnt			
 	
-	print char_ans,4		; display result on screen
+	print char_ans,4		
 ret
 
 
