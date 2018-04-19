@@ -6,25 +6,24 @@ global	filehandle, char, buf, abuf_len
 
 %include	"macro.asm"
 
-;------------------------------------------------------------------------
+
+
 section .data
 	nline		db	10
 	nline_len	equ	$-nline
 
-	ano		db 	10,10,10,10,"ML assignment 05 :- String Operation using Far Procedure"
-			db		   10,"---------------------------------------------------",10
-	ano_len	equ	$-ano
+	
 
-	filemsg	db	10,"Enter filename for string operation	: "
+	filemsg	db	10,"Enter filename : "
 	filemsg_len	equ	$-filemsg	
   
-	charmsg	db	10,"Enter character to search	: "
+	charmsg	db	10,"Enter character to be searched : "
 	charmsg_len	equ	$-charmsg
 
-	errmsg	db	10,"ERROR in opening File...",10
+	errmsg	db	10,10,"ERROR while opening File!!!!!",10,10
 	errmsg_len	equ	$-errmsg
 
-	exitmsg	db	10,10,"Exit from program...",10,10
+	exitmsg	db	10,10,"Exiting from program!!!",10,10
 	exitmsg_len	equ	$-exitmsg
 
 ;---------------------------------------------------------------------------
@@ -38,12 +37,13 @@ section .bss
 	filehandle		resq	1
 	abuf_len		resq	1		; actual buffer length
 
-;--------------------------------------------------------------------------
+
+
 section .text
 	global _start
 		
 _start:
-		print	ano,ano_len		;assignment no. 
+		
 
 		print	filemsg,filemsg_len		
 		read 	filename,50
@@ -53,8 +53,8 @@ _start:
 		print	charmsg,charmsg_len		
 		read 	char,2
 		
-		fopen	filename			; on succes returns handle
-		cmp	rax,-1H			; on failure returns -1
+		fopen	filename			; if opened returns handle
+		cmp	rax,-1H			; if not found returns -1
 		jle	Error
 		mov	[filehandle],rax	
 
@@ -68,6 +68,5 @@ Error:	print	errmsg, errmsg_len
 
 Exit:		print	exitmsg,exitmsg_len
 		exit
-;-------------------------------------------------------------------------------- 
-;-------------------------------------------------------------------------------- 
+
 
